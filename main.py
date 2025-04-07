@@ -6,18 +6,23 @@ pygame.font.init()
 WIDTH, HEIGHT = 1000, 800
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Dodge")
-
+icon = pygame.image.load('C:\\Python\\SpaceDodge\\rocket.png')
+pygame.display.set_icon(icon)
 
 
 PLAYER_WIDTH = 40
 PLAYER_HEIGHT = 60
-
+PLAYER_IMG = pygame.image.load('C:\\Python\\SpaceDodge\\space-ship.png')
+PLAYER_IMG = pygame.transform.scale(PLAYER_IMG, (PLAYER_WIDTH, PLAYER_HEIGHT))
 PLAYER_VEL = 5
-STAR_WIDTH = 10
-STAR_HEIGHT = 20
+
+STAR_WIDTH = 30
+STAR_HEIGHT = 40
+STAR_IMG = pygame.image.load('C:\\Python\\SpaceDodge\\asteroid.png')
+STAR_IMG = pygame.transform.scale(STAR_IMG, (STAR_WIDTH, STAR_HEIGHT))
 STAR_VEL = 3
 
-FONT = pygame.font.SysFont("comicsans", 30)
+FONT = pygame.font.SysFont("Space Mono", 30)
 
 def draw(player, elapsed_time, stars):
 
@@ -26,10 +31,10 @@ def draw(player, elapsed_time, stars):
     time_text = FONT.render(f"Time: {round(elapsed_time)}s", 1, "white")
     WIN.blit(time_text, (10, 10))
 
-    pygame.draw.rect(WIN, "red", player)
+    WIN.blit(PLAYER_IMG, (player.x, player.y))
 
     for star in stars:
-        pygame.draw.rect(WIN , "white", star)
+        WIN.blit(STAR_IMG, (star.x, star.y))
 
     pygame.display.update()
 
